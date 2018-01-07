@@ -1,7 +1,7 @@
 const YeomanGenerator = require('yeoman-generator');
 const { OPTION_MAP: InitOptions } = require('../init');
 
-module.exports = class ReactGenerator extends YeomanGenerator {
+module.exports = class NodeGenerator extends YeomanGenerator {
     constructor(...args) {
         super(...args);
         this.option('private', InitOptions.private);
@@ -16,11 +16,22 @@ module.exports = class ReactGenerator extends YeomanGenerator {
     writing() {
         // Setup scripts
         const scripts = {
-            start: 'poi dev --config ./config/poi.config.js',
-            build: 'poi build --config ./config/poi.config.js',
-            clean: 'rimraf dist'
+            start: 'ts-node ./src/index.ts',
+            watch: 'nodemon ./src/index.ts'
         };
         this.fs.extendJSON('package.json', { scripts }, undefined, 4);
+
+        // Configure nodemon
+        const nodemonConfig = {
+            watch: ['src/**/*.ts'],
+            exec: 'ts-node',
+            quiet: true,
+            events: {
+                start: 'clear || cls',
+                restart: 'clear || cls'
+            }
+        };
+        this.fs.extendJSON('package.json', { nodemonConfig }, undefined, 4);
 
         // Copy project files to destination
         this.fs.copy(this.templatePath('**/*'), this.destinationRoot(), {
@@ -30,20 +41,12 @@ module.exports = class ReactGenerator extends YeomanGenerator {
 
     install() {
         // Install dependencies
-        const dependencies = ['react', 'react-dom'];
+        const dependencies = [];
         const devDependencies = [
-            '@ngfk/poi-preset-react-typescript',
-            '@types/react',
-            '@types/react-dom',
-            '@types/react-hot-loader',
-            '@types/webpack-env',
-            'node-sass',
-            'poi',
-            'prettier',
-            'rimraf',
-            'sass-loader',
-            'typescript',
-            'webpack'
+            '@types/node',
+            'nodemon',
+            'ts-node',
+            'typescript'
         ];
 
         this.yarnInstall(dependencies, { save: true });
