@@ -8,7 +8,7 @@
 
         "node_modules": true,
         ".gitignore": true,
-        "package-lock.json": true,
+        "yarn.lock": true,
         "prettier.config.js": true
     },
 

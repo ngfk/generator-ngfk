@@ -8,8 +8,8 @@
 
         "node_modules": true,
         ".gitignore": true,
-        "package-lock.json": true,
-        "prettier.config.js": true
+        "prettier.config.js": true,
+        "yarn.lock": true
     },
 
     "prettier.ignorePath": "config/.prettierignore"
