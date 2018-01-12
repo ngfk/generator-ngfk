@@ -38,6 +38,7 @@ module.exports = class InitGenerator extends YeomanGenerator {
                 '**/CVS': true,
                 '**/.DS_Store': true,
 
+                LICENSE: true,
                 node_modules: true,
                 '.gitignore': true,
                 'yarn.lock': true
