@@ -8,6 +8,12 @@ OPTION_MAP.set('private', {
     type: Boolean
 });
 
+OPTION_MAP.set('prettier', {
+    description: 'Include configuration for prettier',
+    type: Boolean,
+    default: true
+});
+
 /**
  * @param {Generator} generator
  * @param {string[]} options

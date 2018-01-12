@@ -26,7 +26,10 @@ module.exports = class InitGenerator extends YeomanGenerator {
             undefined,
             4
         );
+    }
 
+    writing() {
+        // Create vscode settings
         const settings = {
             'files.exclude': {
                 '**/.git': true,
@@ -37,14 +40,11 @@ module.exports = class InitGenerator extends YeomanGenerator {
 
                 node_modules: true,
                 '.gitignore': true,
-                'prettier.config.js': true,
                 'yarn.lock': true
-            },
-
-            'prettier.ignorePath': 'config/.prettierignore'
+            }
         };
 
-        this.fs.writeJSON(
+        this.fs.extendJSON(
             this.destinationPath('.vscode/settings.json'),
             settings,
             undefined,
