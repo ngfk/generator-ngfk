@@ -35,6 +35,30 @@ module.exports = class InitGenerator extends YeomanGenerator {
             undefined,
             4
         );
+
+        const settings = {
+            'files.exclude': {
+                '**/.git': true,
+                '**/.svn': true,
+                '**/.hg': true,
+                '**/CVS': true,
+                '**/.DS_Store': true,
+
+                node_modules: true,
+                '.gitignore': true,
+                'prettier.config.js': true,
+                'yarn.lock': true
+            },
+
+            'prettier.ignorePath': 'config/.prettierignore'
+        };
+
+        this.fs.writeJSON(
+            this.destinationPath('.vscode/settings.json'),
+            settings,
+            undefined,
+            4
+        );
     }
 };
 
