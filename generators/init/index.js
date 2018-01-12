@@ -19,7 +19,7 @@ module.exports = class InitGenerator extends YeomanGenerator {
 
     initializing() {
         const content = {
-            name: this.appname,
+            name: this.appname.replace(/ /g, '-'),
             version: '1.0.0',
             description: '',
             main: 'index.js',
