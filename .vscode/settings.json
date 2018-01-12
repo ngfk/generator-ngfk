@@ -8,8 +8,9 @@
 
         "node_modules": true,
         ".gitignore": true,
+        "LICENSE": true,
+        "prettier.config.js": true,
         "yarn.lock": true,
-        "prettier.config.js": true
     },
 
     "prettier.ignorePath": "config/.prettierignore"
