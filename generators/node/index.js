@@ -1,16 +1,15 @@
 const YeomanGenerator = require('yeoman-generator');
-const { OPTION_MAP: InitOptions } = require('../init');
+const configureOptions = require('../../utils/configure-options');
 
 module.exports = class NodeGenerator extends YeomanGenerator {
     constructor(...args) {
         super(...args);
-        this.option('private', InitOptions.private);
+        configureOptions(this, ['private']);
     }
 
     initializing() {
-        this.composeWith(require.resolve('../init'), {
-            private: this.options['private']
-        });
+        const p = this.options['private'];
+        this.composeWith(require.resolve('../init'), { private: p });
     }
 
     writing() {

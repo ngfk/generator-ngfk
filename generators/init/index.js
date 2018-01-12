@@ -1,20 +1,11 @@
 const YeomanGenerator = require('yeoman-generator');
 const sortPackageJson = require('sort-package-json');
-
-const OPTION_MAP = {
-    private: {
-        alias: 'p',
-        description: 'Set package.json private to true',
-        type: Boolean
-    }
-};
+const configureOptions = require('../../utils/configure-options');
 
 module.exports = class InitGenerator extends YeomanGenerator {
     constructor(...args) {
         super(...args);
-        for (const option of Object.keys(OPTION_MAP)) {
-            this.option(option, OPTION_MAP[option]);
-        }
+        configureOptions(this, ['private']);
     }
 
     initializing() {
@@ -61,5 +52,3 @@ module.exports = class InitGenerator extends YeomanGenerator {
         );
     }
 };
-
-module.exports.OPTION_MAP = OPTION_MAP;
