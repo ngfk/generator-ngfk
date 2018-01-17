@@ -9,6 +9,9 @@ module.exports = class InitGenerator extends YeomanGenerator {
     }
 
     initializing() {
+        const packageJson = this.fs.exists('package.json');
+        if (packageJson) return;
+
         const content = {
             name: this.appname.replace(/ /g, '-'),
             version: '1.0.0',
