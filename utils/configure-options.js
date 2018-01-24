@@ -14,6 +14,12 @@ OPTION_MAP.set('prettier', {
     default: true
 });
 
+OPTION_MAP.set('mobx', {
+    description: 'Include the mobx state management library',
+    type: Boolean,
+    default: false
+});
+
 /**
  * @param {Generator} generator
  * @param {string[]} options

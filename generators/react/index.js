@@ -4,7 +4,7 @@ const configureOptions = require('../../utils/configure-options');
 module.exports = class ReactGenerator extends YeomanGenerator {
     constructor(...args) {
         super(...args);
-        configureOptions(this, ['private', 'prettier']);
+        configureOptions(this, ['private', 'prettier', 'mobx']);
     }
 
     initializing() {
@@ -47,6 +47,10 @@ module.exports = class ReactGenerator extends YeomanGenerator {
             'typescript',
             'webpack'
         ];
+
+        if (this.options['mobx']) {
+            dependencies.push('mobx', 'mobx-react');
+        }
 
         this.yarnInstall(dependencies, { save: true });
         this.yarnInstall(devDependencies, { dev: true });
