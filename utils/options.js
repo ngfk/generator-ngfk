@@ -36,10 +36,8 @@ const OPTIONS_MAP = {
  */
 const configureOptions = (generator, options) => {
     for (const option of options) {
-        if (!OPTION_MAP.has(option))
-            throw new Error('Unknown option: ' + option);
-
-        generator.option(option, OPTION_MAP.get(option));
+        if (!OPTIONS_MAP[option]) throw new Error('Unknown option: ' + option);
+        generator.option(option, OPTIONS_MAP[option]);
     }
 };
 
