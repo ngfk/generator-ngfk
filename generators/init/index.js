@@ -1,11 +1,12 @@
-const YeomanGenerator = require('yeoman-generator');
 const sortPackageJson = require('sort-package-json');
-const configureOptions = require('../../utils/configure-options');
+const YeomanGenerator = require('yeoman-generator');
+
+const { configureOptions, OPTION } = require('../../utils/options');
 
 module.exports = class InitGenerator extends YeomanGenerator {
     constructor(...args) {
         super(...args);
-        configureOptions(this, ['private']);
+        configureOptions(this, [OPTION.PRIVATE]);
     }
 
     initializing() {
@@ -19,7 +20,7 @@ module.exports = class InitGenerator extends YeomanGenerator {
             main: 'index.js',
             author: 'N.G.F. Koster <ngf.koster@outlook.com>',
             license: 'MIT',
-            private: this.options['private'] || undefined,
+            private: this.options[OPTION.PRIVATE] || undefined,
             scripts: {}
         };
 

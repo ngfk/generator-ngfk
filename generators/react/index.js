@@ -1,17 +1,23 @@
 const YeomanGenerator = require('yeoman-generator');
-const configureOptions = require('../../utils/configure-options');
+
+const { configureOptions, OPTION } = require('../../utils/options');
 
 module.exports = class ReactGenerator extends YeomanGenerator {
     constructor(...args) {
         super(...args);
-        configureOptions(this, ['private', 'prettier', 'mobx', 'jest']);
+        configureOptions(this, [
+            OPTION.PRIVATE,
+            OPTION.PRETTIER,
+            OPTION.MOBX,
+            OPTION.JEST
+        ]);
     }
 
     initializing() {
-        const p = this.options['private'];
+        const p = this.options[OPTION.PRIVATE];
         this.composeWith(require.resolve('../init'), { private: p });
 
-        const prettier = this.options['prettier'];
+        const prettier = this.options[OPTION.PRETTIER];
         if (prettier) this.composeWith(require.resolve('../prettier'));
     }
 
@@ -20,7 +26,7 @@ module.exports = class ReactGenerator extends YeomanGenerator {
         const scripts = {
             start: 'poi dev --config ./config/poi.config.js',
             build: 'poi build --config ./config/poi.config.js',
-            test: this.options['jest']
+            test: this.options[OPTION.JEST]
                 ? 'jest --config ./config/jest.config.js'
                 : undefined,
             clean: 'rimraf dist'
@@ -33,7 +39,7 @@ module.exports = class ReactGenerator extends YeomanGenerator {
         });
 
         // Copy test files to destination
-        if (this.options['jest']) {
+        if (this.options[OPTION.JEST]) {
             this.fs.copy(
                 this.templatePath('jest/**/*'),
                 this.destinationRoot(),
@@ -61,11 +67,11 @@ module.exports = class ReactGenerator extends YeomanGenerator {
         ];
 
         // Optional dependencies
-        if (this.options['mobx']) {
+        if (this.options[OPTION.MOBX]) {
             dependencies.push('mobx', 'mobx-react');
         }
 
-        if (this.options['jest']) {
+        if (this.options[OPTION.JEST]) {
             devDependencies.push(
                 '@types/enzyme',
                 '@types/jest',

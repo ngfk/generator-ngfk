@@ -1,5 +1,4 @@
 const YeomanGenerator = require('yeoman-generator');
-const { OPTION_MAP: InitOptions } = require('../init');
 
 module.exports = class PrettierGenerator extends YeomanGenerator {
     constructor(...args) {
