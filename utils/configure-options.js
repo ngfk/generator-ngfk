@@ -20,6 +20,12 @@ OPTION_MAP.set('mobx', {
     default: false
 });
 
+OPTION_MAP.set('jest', {
+    description: 'Include the jest testing framework',
+    type: Boolean,
+    default: true
+});
+
 /**
  * @param {Generator} generator
  * @param {string[]} options
