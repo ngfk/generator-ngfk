@@ -15,7 +15,6 @@
         "generators"
     ],
     "dependencies": {
-        "generator-npm-init": "^1.4.0",
         "sort-package-json": "^1.7.1",
         "yeoman-generator": "^2.0.2"
     }
